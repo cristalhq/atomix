@@ -1,29 +1,19 @@
 package atomix
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestComplex64(t *testing.T) {
-	a := NewComplex64(complex(10.5, 10.5))
-	var c complex64 = complex(10.5, 10.5)
+	a := NewComplex64(complex(float32(10.5), float32(10.5)))
 
-	Equal(t, c, a.Load(), "Load wrong value")
+	Equal(t, complex(float32(10.5), float32(10.5)), a.Load(), "Load wrong value")
 
-	var c1 complex64 = complex(10.8, 10.8)
-	var c2 complex64 = complex(10.3, 10.3)
-	var c3 complex64 = complex(0.5, 0.5)
-	var c4 complex64 = complex(0, 0)
-	var c5 complex64 = complex(1.5, 1.5)
+	Equal(t, complex(float32(10.8), float32(10.8)), a.Add(complex(float32(0.3), float32(0.3))), "Add wrong value")
+	Equal(t, complex(float32(10.3), float32(10.3)), a.Sub(complex(float32(0.5), float32(0.5))), "Sub wrong value")
 
-	Equal(t, c1, a.Add(complex(0.3, 0.3)), "Add wrong value")
-	Equal(t, c2, a.Sub(complex(0.5, 0.5)), "Sub wrong value")
+	OK(t, a.CAS(complex(float32(10.3), float32(10.3)), complex(float32(0.5), float32(0.5))), "CAS should swap")
+	Equal(t, complex(float32(0.5), float32(0.5)), a.Load(), "CAS wrong value")
+	NotOK(t, a.CAS(complex(float32(0.0), float32(0.0)), complex(float32(1.5), float32(1.5))), "CAS shouldn't swap")
 
-	OK(t, a.CAS(c2, complex(0.5, 0.5)), "CAS should swap")
-	Equal(t, c3, a.Load(), "CAS wrong value")
-	NotOK(t, a.CAS(c4, c5), "CAS shouldn't swap")
-
-	a.Store(complex(42.0, 47.0))
-	var d complex64 = complex(42.0, 47.0)
-	Equal(t, d, a.Load(), "Store wrong value")
+	a.Store(complex(float32(42.0), float32(42.0)))
+	Equal(t, complex(float32(42.0), float32(42.0)), a.Load(), "Store wrong value")
 }
