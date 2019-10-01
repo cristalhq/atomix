@@ -5,13 +5,13 @@ import (
 	"sync/atomic"
 )
 
-// Float32 is an atomic wrapper around float32.
+// Complex64 is an atomic wrapper around float32.
 type Complex64 struct {
 	r uint32
 	i uint32
 }
 
-// NewFloat32 creates a float32.
+// NewComplex65 creates a float32.
 func NewComplex64(f complex64) *Complex64 {
 	return &Complex64{
 		math.Float32bits(real(f)),
