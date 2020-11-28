@@ -7,6 +7,7 @@ import (
 
 // Complex64 is an atomic wrapper around float32.
 type Complex64 struct {
+	noCopy
 	ri uint64
 }
 
@@ -20,7 +21,7 @@ func complex64ToUint64(c complex64) uint64 {
 
 // NewComplex64 creates a float32.
 func NewComplex64(c complex64) *Complex64 {
-	return &Complex64{complex64ToUint64(c)}
+	return &Complex64{ri: complex64ToUint64(c)}
 }
 
 // Load atomically the value.

@@ -7,12 +7,13 @@ import (
 
 // Float32 is an atomic wrapper around float32.
 type Float32 struct {
+	noCopy
 	v uint32
 }
 
 // NewFloat32 creates a float32.
 func NewFloat32(f float32) *Float32 {
-	return &Float32{math.Float32bits(f)}
+	return &Float32{v: math.Float32bits(f)}
 }
 
 // Load atomically the value.

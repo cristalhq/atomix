@@ -4,6 +4,7 @@ import "sync/atomic"
 
 // String is an atomic wrapper around a string
 type String struct {
+	noCopy
 	value atomic.Value
 }
 
@@ -27,4 +28,3 @@ func (s *String) Load() string {
 func (s *String) Store(n string) {
 	s.value.Store(n)
 }
-

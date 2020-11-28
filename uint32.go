@@ -4,6 +4,7 @@ import "sync/atomic"
 
 // Uint32 is an atomic wrapper around an uint32.
 type Uint32 struct {
+	noCopy
 	value uint32
 }
 
