@@ -1,9 +1,9 @@
 # atomix
 
-[![Build Status][travis-img]][travis-url]
-[![GoDoc][doc-img]][doc-url]
-[![Go Report Card][reportcard-img]][reportcard-url]
-[![Go Report Card][coverage-img]][coverage-url]
+[![build-img]][build-url]
+[![pkg-img]][pkg-url]
+[![reportcard-img]][reportcard-url]
+[![coverage-img]][coverage-url]
 
 Simple and easy wrappers for Go `sync/atomic` package.
 
@@ -30,17 +30,17 @@ b := a.Load()
 
 ## Documentation
 
-See [these docs](https://godoc.org/github.com/cristalhq/atomix).
+See [these docs][pkg-url].
 
 ## License
 
 [MIT License](LICENSE).
 
-[travis-img]: https://travis-ci.org/cristalhq/atomix.svg?branch=master
-[travis-url]: https://travis-ci.org/cristalhq/atomix
-[doc-img]: https://godoc.org/github.com/cristalhq/atomix?status.svg
-[doc-url]: https://godoc.org/github.com/cristalhq/atomix
+[build-img]: https://github.com/cristalhq/atomix/workflows/build/badge.svg
+[build-url]: https://github.com/cristalhq/atomix/actions
+[pkg-img]: https://pkg.go.dev/badge/cristalhq/atomix
+[pkg-url]: https://pkg.go.dev/github.com/cristalhq/atomix
 [reportcard-img]: https://goreportcard.com/badge/cristalhq/atomix
 [reportcard-url]: https://goreportcard.com/report/cristalhq/atomix
-[coverage-img]: https://coveralls.io/repos/github/cristalhq/atomix/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/cristalhq/atomix?branch=master
+[coverage-img]: https://codecov.io/gh/cristalhq/atomix/branch/master/graph/badge.svg
+[coverage-url]: https://codecov.io/gh/cristalhq/atomix
