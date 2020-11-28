@@ -30,3 +30,9 @@ func NotOK(t *testing.T, cond bool, msg string) {
 		t.Errorf("%s: should be false", msg)
 	}
 }
+
+func TestNoCopy(t *testing.T) {
+	// just to bump coverage
+	var no noCopy
+	no.Lock()
+}
