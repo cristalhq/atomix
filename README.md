@@ -9,9 +9,16 @@ Simple and easy wrappers for Go `sync/atomic` package.
 
 ## Features
 
-* All primitive types.
-* Zero performance overhead.
+* All primitive types and more
+  * int8, int16, int32, int64
+  * uint8, uint16, uint32, uint64
+  * float32, float64, complex64
+  * string, interface{} and error
+  * uintptr, unsafe pointer
+  * time.Time, time.Duration
+* Zero cpu and memory overhead.
 * Additional methods.
+* Forbidden equal operation.
 
 ## Install
 
