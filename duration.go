@@ -23,7 +23,7 @@ func (d *Duration) Load() time.Duration {
 	return time.Duration(atomic.LoadInt64(&d.value))
 }
 
-// Store atomically the passed value.
+// Store atomically the given value.
 func (d *Duration) Store(dur time.Duration) {
 	atomic.StoreInt64(&d.value, int64(dur))
 }

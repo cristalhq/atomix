@@ -20,7 +20,7 @@ func (i *Uint32) Load() uint32 {
 	return atomic.LoadUint32(&i.value)
 }
 
-// Store atomically the passed value.
+// Store atomically the given value.
 func (i *Uint32) Store(n uint32) {
 	atomic.StoreUint32(&i.value, n)
 }

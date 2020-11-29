@@ -29,7 +29,7 @@ func (c *Complex64) Load() complex64 {
 	return uint64ToComplex64(atomic.LoadUint64(&c.ri))
 }
 
-// Store atomically the passed value.
+// Store atomically the given value.
 func (c *Complex64) Store(s complex64) {
 	atomic.StoreUint64(&c.ri, complex64ToUint64(s))
 }

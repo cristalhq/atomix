@@ -2,20 +2,20 @@ package atomix
 
 import "sync/atomic"
 
-// String is an atomic wrapper around a string
+// String is an atomic wrapper around a string.
 type String struct {
 	noCopy
 	value atomic.Value
 }
 
-// NewString creates a String
+// NewString creates a String.
 func NewString(str string) *String {
 	s := &String{}
 	s.Store(str)
 	return s
 }
 
-// Load atomically the value
+// Load atomically the value.
 func (s *String) Load() string {
 	v := s.value.Load()
 	if v == nil {
@@ -24,7 +24,7 @@ func (s *String) Load() string {
 	return v.(string)
 }
 
-// Store atomically the passed value.
+// Store atomically the given value.
 func (s *String) Store(n string) {
 	s.value.Store(n)
 }

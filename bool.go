@@ -20,7 +20,7 @@ func (b *Bool) Load() bool {
 	return isTrue(atomic.LoadUint32(&b.value))
 }
 
-// Store atomically stores the passed value.
+// Store atomically stores the given value.
 func (b *Bool) Store(new bool) {
 	atomic.StoreUint32(&b.value, b2i(new))
 }
