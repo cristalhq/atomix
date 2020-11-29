@@ -15,6 +15,10 @@ func NewString(str string) *String {
 	return s
 }
 
+func (s *String) String() string {
+	return s.Load()
+}
+
 // Load atomically the value.
 func (s *String) Load() string {
 	v := s.value.Load()
