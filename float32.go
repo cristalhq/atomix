@@ -7,7 +7,7 @@ import (
 
 // Float32 is an atomic wrapper around float32.
 type Float32 struct {
-	noCopy
+	atomicType
 	v uint32
 }
 
@@ -21,7 +21,7 @@ func (f *Float32) Load() float32 {
 	return math.Float32frombits(atomic.LoadUint32(&f.v))
 }
 
-// Store atomically the passed value.
+// Store atomically the given value.
 func (f *Float32) Store(s float32) {
 	atomic.StoreUint32(&f.v, math.Float32bits(s))
 }

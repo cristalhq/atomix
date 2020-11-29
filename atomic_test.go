@@ -31,8 +31,8 @@ func NotOK(t *testing.T, cond bool, msg string) {
 	}
 }
 
-func TestNoCopy(t *testing.T) {
+func TestAtomicType(t *testing.T) {
 	// just to bump coverage
-	var no noCopy
-	no.Lock()
+	var a atomicType
+	a.Lock()
 }

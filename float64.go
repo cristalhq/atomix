@@ -7,7 +7,7 @@ import (
 
 // Float64 is an atomic wrapper around float64.
 type Float64 struct {
-	noCopy
+	atomicType
 	v uint64
 }
 
@@ -21,7 +21,7 @@ func (f *Float64) Load() float64 {
 	return math.Float64frombits(atomic.LoadUint64(&f.v))
 }
 
-// Store atomically the passed value.
+// Store atomically the given value.
 func (f *Float64) Store(s float64) {
 	atomic.StoreUint64(&f.v, math.Float64bits(s))
 }

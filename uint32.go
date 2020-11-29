@@ -4,15 +4,13 @@ import "sync/atomic"
 
 // Uint32 is an atomic wrapper around an uint32.
 type Uint32 struct {
-	noCopy
+	atomicType
 	value uint32
 }
 
 // NewUint32 creates an Uint32.
 func NewUint32(i uint32) *Uint32 {
-	return &Uint32{
-		value: i,
-	}
+	return &Uint32{value: i}
 }
 
 // Load atomically the value.

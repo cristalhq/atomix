@@ -4,15 +4,13 @@ import "sync/atomic"
 
 // Int64 is an atomic wrapper around an int64.
 type Int64 struct {
-	noCopy
+	atomicType
 	value int64
 }
 
 // NewInt64 creates an Int64.
 func NewInt64(i int64) *Int64 {
-	return &Int64{
-		value: i,
-	}
+	return &Int64{value: i}
 }
 
 // Load atomically the value.

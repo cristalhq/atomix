@@ -7,7 +7,7 @@ import (
 
 // Duration is an atomic wrapper around an time.Duration.
 type Duration struct {
-	noCopy
+	atomicType
 	value int64
 }
 

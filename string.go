@@ -4,7 +4,7 @@ import "sync/atomic"
 
 // String is an atomic wrapper around a string.
 type String struct {
-	noCopy
+	atomicType
 	value atomic.Value
 }
 

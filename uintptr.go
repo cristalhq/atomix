@@ -4,15 +4,13 @@ import "sync/atomic"
 
 // Uintptr is an atomic uintptr.
 type Uintptr struct {
-	noCopy
+	atomicType
 	value uintptr
 }
 
 // NewUintptr creates an Uintptr.
-func NewUintptr(value uintptr) *Uintptr {
-	return &Uintptr{
-		value: value,
-	}
+func NewUintptr(ptr uintptr) *Uintptr {
+	return &Uintptr{value: ptr}
 }
 
 // Load atomically the value.
@@ -20,7 +18,7 @@ func (u *Uintptr) Load() uintptr {
 	return atomic.LoadUintptr(&u.value)
 }
 
-// Store atomically the passed value.
+// Store atomically the given value.
 func (u *Uintptr) Store(n uintptr) {
 	atomic.StoreUintptr(&u.value, n)
 }

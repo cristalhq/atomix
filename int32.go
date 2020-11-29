@@ -4,15 +4,13 @@ import "sync/atomic"
 
 // Int32 is an atomic wrapper around an int32.
 type Int32 struct {
-	noCopy
+	atomicType
 	value int32
 }
 
 // NewInt32 creates an Int32.
 func NewInt32(i int32) *Int32 {
-	return &Int32{
-		value: i,
-	}
+	return &Int32{value: i}
 }
 
 // Load atomically the value.

@@ -4,15 +4,13 @@ import "sync/atomic"
 
 // Bool is an atomic boolean.
 type Bool struct {
-	noCopy
+	atomicType
 	value uint32
 }
 
 // NewBool creates a Bool.
 func NewBool(value bool) *Bool {
-	return &Bool{
-		value: b2i(value),
-	}
+	return &Bool{value: b2i(value)}
 }
 
 // Load atomically loads the boolean.

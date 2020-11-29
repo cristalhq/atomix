@@ -7,16 +7,8 @@ import (
 
 // Complex64 is an atomic wrapper around float32.
 type Complex64 struct {
-	noCopy
+	atomicType
 	ri uint64
-}
-
-func uint64ToComplex64(u uint64) complex64 {
-	return complex(math.Float32frombits(uint32(u>>32)), math.Float32frombits(uint32((u<<32)>>32)))
-}
-
-func complex64ToUint64(c complex64) uint64 {
-	return uint64(math.Float32bits(real(c)))<<32 | uint64(math.Float32bits(imag(c)))
 }
 
 // NewComplex64 creates a float32.
@@ -53,4 +45,12 @@ func (c *Complex64) Sub(s complex64) complex64 {
 // CAS is an atomic Compare-and-swap.
 func (c *Complex64) CAS(oc, nc complex64) bool {
 	return atomic.CompareAndSwapUint64(&c.ri, complex64ToUint64(oc), complex64ToUint64(nc))
+}
+
+func uint64ToComplex64(u uint64) complex64 {
+	return complex(math.Float32frombits(uint32(u>>32)), math.Float32frombits(uint32((u<<32)>>32)))
+}
+
+func complex64ToUint64(c complex64) uint64 {
+	return uint64(math.Float32bits(real(c)))<<32 | uint64(math.Float32bits(imag(c)))
 }

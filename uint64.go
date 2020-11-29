@@ -4,15 +4,13 @@ import "sync/atomic"
 
 // Uint64 is an atomic wrapper around an uint64.
 type Uint64 struct {
-	noCopy
+	atomicType
 	value uint64
 }
 
 // NewUint64 creates a Uint64.
 func NewUint64(i uint64) *Uint64 {
-	return &Uint64{
-		value: i,
-	}
+	return &Uint64{value: i}
 }
 
 // Load atomically the value.
