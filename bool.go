@@ -4,7 +4,6 @@ import "sync/atomic"
 
 // Bool is an atomic boolean.
 type Bool struct {
-	atomicType
 	value uint32
 }
 

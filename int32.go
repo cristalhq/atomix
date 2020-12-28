@@ -4,7 +4,6 @@ import "sync/atomic"
 
 // Int32 is an atomic wrapper around an int32.
 type Int32 struct {
-	atomicType
 	value int32
 }
 

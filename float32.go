@@ -7,7 +7,6 @@ import (
 
 // Float32 is an atomic wrapper around float32.
 type Float32 struct {
-	atomicType
 	v uint32
 }
 

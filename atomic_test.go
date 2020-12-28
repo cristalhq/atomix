@@ -30,9 +30,3 @@ func NotOK(t *testing.T, cond bool, msg string) {
 		t.Errorf("%s: should be false", msg)
 	}
 }
-
-func TestAtomicType(t *testing.T) {
-	// just to bump coverage
-	var a atomicType
-	a.Lock()
-}

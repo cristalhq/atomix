@@ -4,7 +4,6 @@ import "sync/atomic"
 
 // Int64 is an atomic wrapper around an int64.
 type Int64 struct {
-	atomicType
 	value int64
 }
 
