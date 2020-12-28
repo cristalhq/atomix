@@ -18,7 +18,6 @@ Simple and easy wrappers for Go `sync/atomic` package.
   * time.Time, time.Duration
 * Zero cpu and memory overhead.
 * Additional methods.
-* Forbidden equal operation.
 
 ## Install
 
@@ -32,7 +31,7 @@ go get github.com/cristalhq/atomix
 var a atomix.Int32
 a.Store(1335)
 a.Add(2)
-b := a.Load()
+b := a.Load() // 1337
 ```
 
 ## Documentation
