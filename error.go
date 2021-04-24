@@ -1,6 +1,8 @@
 package atomix
 
-import "sync/atomic"
+import (
+	"sync/atomic"
+)
 
 // Error is an atomic wrapper around error.
 type Error struct {
@@ -10,6 +12,7 @@ type Error struct {
 var _ error = &Error{}
 
 // NewError creates an Error.
+// Cannot store nil after first non-nil store.
 func NewError(err error) *Error {
 	e := &Error{}
 	e.Store(err)
@@ -38,6 +41,9 @@ func (e *Error) Load() error {
 }
 
 // Store atomically the given value.
+// Doesn't store nil error.
 func (e *Error) Store(err error) {
-	e.value.Store(err)
+	if err != nil {
+		e.value.Store(err)
+	}
 }
