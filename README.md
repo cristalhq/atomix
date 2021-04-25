@@ -5,7 +5,15 @@
 [![reportcard-img]][reportcard-url]
 [![coverage-img]][coverage-url]
 
-Simple and easy wrappers for Go `sync/atomic` package.
+Better `sync/atomic` package for Go.
+
+## Rationale
+
+To make life easier with `sync/atomic` this package provide wrappers and helper functions, so all the atomic data and operations are easily visible.
+
+## Note
+
+For the better `sync` package see [synx](https://github.com/cristalhq/synx).
 
 ## Features
 
@@ -16,8 +24,8 @@ Simple and easy wrappers for Go `sync/atomic` package.
   * string, interface{} and error
   * uintptr, unsafe pointer
   * time.Time, time.Duration
-* Zero cpu and memory overhead.
-* Additional methods.
+* Zero cpu and memory overhead in almost all cases.
+* Useful helpers.
 
 ## Install
 
