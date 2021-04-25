@@ -15,8 +15,8 @@ func NewDuration(d time.Duration) *Duration {
 	return &Duration{value: int64(d)}
 }
 
-func (f *Duration) String() string {
-	return f.Load().String()
+func (d *Duration) String() string {
+	return d.Load().String()
 }
 
 // Load atomically the value.

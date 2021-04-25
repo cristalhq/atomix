@@ -7,14 +7,14 @@ import (
 
 const CacheLine = 64
 
-// AlignedInt64 is an atomic wrapper around an int64.
+// AlignedInt64 is an atomic wrapper around an int64 aligned to a cache line.
 type AlignedInt64 struct {
 	_     [CacheLine - 8]byte
 	value int64
 	_     [CacheLine]byte
 }
 
-// NewInt64 creates an Int64.
+// NewAlignedInt64 creates an AlignedInt64.
 func NewAlignedInt64(i int64) *AlignedInt64 {
 	return &AlignedInt64{value: i}
 }

@@ -15,8 +15,8 @@ func NewUintptr(ptr uintptr) *Uintptr {
 	return &Uintptr{value: ptr}
 }
 
-func (i *Uintptr) String() string {
-	return strconv.FormatUint(uint64(i.Load()), 10)
+func (u *Uintptr) String() string {
+	return strconv.FormatUint(uint64(u.Load()), 10)
 }
 
 // Load atomically the value.
