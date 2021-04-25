@@ -8,12 +8,12 @@ import (
 
 // Float32 is an atomic wrapper around float32.
 type Float32 struct {
-	v uint32
+	value uint32
 }
 
 // NewFloat32 creates a Float32.
 func NewFloat32(f float32) *Float32 {
-	return &Float32{v: math.Float32bits(f)}
+	return &Float32{value: math.Float32bits(f)}
 }
 
 func (f *Float32) String() string {
@@ -22,12 +22,12 @@ func (f *Float32) String() string {
 
 // Load atomically the value.
 func (f *Float32) Load() float32 {
-	return math.Float32frombits(atomic.LoadUint32(&f.v))
+	return math.Float32frombits(atomic.LoadUint32(&f.value))
 }
 
 // Store atomically the given value.
 func (f *Float32) Store(s float32) {
-	atomic.StoreUint32(&f.v, math.Float32bits(s))
+	atomic.StoreUint32(&f.value, math.Float32bits(s))
 }
 
 // Add atomically and return the new value.
@@ -48,5 +48,5 @@ func (f *Float32) Sub(s float32) float32 {
 
 // CAS is an atomic Compare-And-Swap operation.
 func (f *Float32) CAS(old, new float32) bool {
-	return atomic.CompareAndSwapUint32(&f.v, math.Float32bits(old), math.Float32bits(new))
+	return atomic.CompareAndSwapUint32(&f.value, math.Float32bits(old), math.Float32bits(new))
 }

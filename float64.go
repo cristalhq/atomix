@@ -8,12 +8,12 @@ import (
 
 // Float64 is an atomic wrapper around float64.
 type Float64 struct {
-	v uint64
+	value uint64
 }
 
 // NewFloat64 creates a Float64.
 func NewFloat64(f float64) *Float64 {
-	return &Float64{v: math.Float64bits(f)}
+	return &Float64{value: math.Float64bits(f)}
 }
 
 func (f *Float64) String() string {
@@ -22,12 +22,12 @@ func (f *Float64) String() string {
 
 // Load atomically the value.
 func (f *Float64) Load() float64 {
-	return math.Float64frombits(atomic.LoadUint64(&f.v))
+	return math.Float64frombits(atomic.LoadUint64(&f.value))
 }
 
 // Store atomically the given value.
 func (f *Float64) Store(s float64) {
-	atomic.StoreUint64(&f.v, math.Float64bits(s))
+	atomic.StoreUint64(&f.value, math.Float64bits(s))
 }
 
 // Add atomically and return the new value.
@@ -48,5 +48,5 @@ func (f *Float64) Sub(s float64) float64 {
 
 // CAS is an atomic Compare-And-Swap operation.
 func (f *Float64) CAS(old, new float64) bool {
-	return atomic.CompareAndSwapUint64(&f.v, math.Float64bits(old), math.Float64bits(new))
+	return atomic.CompareAndSwapUint64(&f.value, math.Float64bits(old), math.Float64bits(new))
 }
