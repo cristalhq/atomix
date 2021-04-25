@@ -1,6 +1,7 @@
 package atomix
 
 import (
+	"fmt"
 	"math"
 	"sync/atomic"
 )
@@ -13,6 +14,10 @@ type Complex64 struct {
 // NewComplex64 creates a Complex64.
 func NewComplex64(c complex64) *Complex64 {
 	return &Complex64{ri: complex64ToUint64(c)}
+}
+
+func (c *Complex64) String() string {
+	return fmt.Sprint(c.Load())
 }
 
 // Load atomically the value.

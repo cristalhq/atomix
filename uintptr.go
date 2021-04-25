@@ -1,6 +1,9 @@
 package atomix
 
-import "sync/atomic"
+import (
+	"strconv"
+	"sync/atomic"
+)
 
 // Uintptr is an atomic uintptr.
 type Uintptr struct {
@@ -10,6 +13,10 @@ type Uintptr struct {
 // NewUintptr creates an Uintptr.
 func NewUintptr(ptr uintptr) *Uintptr {
 	return &Uintptr{value: ptr}
+}
+
+func (i *Uintptr) String() string {
+	return strconv.FormatUint(uint64(i.Load()), 10)
 }
 
 // Load atomically the value.

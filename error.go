@@ -19,6 +19,10 @@ func NewError(err error) *Error {
 	return e
 }
 
+func (e *Error) String() string {
+	return e.Error()
+}
+
 func (e *Error) Error() string {
 	if err := e.Load(); err != nil {
 		return err.Error()

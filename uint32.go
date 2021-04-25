@@ -1,6 +1,9 @@
 package atomix
 
-import "sync/atomic"
+import (
+	"strconv"
+	"sync/atomic"
+)
 
 // Uint32 is an atomic wrapper around an uint32.
 type Uint32 struct {
@@ -10,6 +13,10 @@ type Uint32 struct {
 // NewUint32 creates an Uint32.
 func NewUint32(i uint32) *Uint32 {
 	return &Uint32{value: i}
+}
+
+func (i *Uint32) String() string {
+	return strconv.FormatUint(uint64(i.Load()), 10)
 }
 
 // Load atomically the value.

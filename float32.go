@@ -2,6 +2,7 @@ package atomix
 
 import (
 	"math"
+	"strconv"
 	"sync/atomic"
 )
 
@@ -13,6 +14,10 @@ type Float32 struct {
 // NewFloat32 creates a Float32.
 func NewFloat32(f float32) *Float32 {
 	return &Float32{v: math.Float32bits(f)}
+}
+
+func (f *Float32) String() string {
+	return strconv.FormatFloat(float64(f.Load()), 'g', -1, 64)
 }
 
 // Load atomically the value.

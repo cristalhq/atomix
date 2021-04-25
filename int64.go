@@ -1,6 +1,9 @@
 package atomix
 
-import "sync/atomic"
+import (
+	"strconv"
+	"sync/atomic"
+)
 
 // Int64 is an atomic wrapper around an int64.
 type Int64 struct {
@@ -10,6 +13,10 @@ type Int64 struct {
 // NewInt64 creates an Int64.
 func NewInt64(i int64) *Int64 {
 	return &Int64{value: i}
+}
+
+func (i *Int64) String() string {
+	return strconv.FormatInt(i.Load(), 10)
 }
 
 // Load atomically the value.

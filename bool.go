@@ -1,6 +1,9 @@
 package atomix
 
-import "sync/atomic"
+import (
+	"strconv"
+	"sync/atomic"
+)
 
 // Bool is an atomic boolean.
 type Bool struct {
@@ -10,6 +13,10 @@ type Bool struct {
 // NewBool creates a Bool.
 func NewBool(value bool) *Bool {
 	return &Bool{value: b2i(value)}
+}
+
+func (b *Bool) String() string {
+	return strconv.FormatBool(b.Load())
 }
 
 // Load atomically the value.
