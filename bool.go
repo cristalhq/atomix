@@ -12,12 +12,12 @@ func NewBool(value bool) *Bool {
 	return &Bool{value: b2i(value)}
 }
 
-// Load atomically loads the boolean.
+// Load atomically the value.
 func (b *Bool) Load() bool {
 	return isTrue(atomic.LoadUint32(&b.value))
 }
 
-// Store atomically stores the given value.
+// Store atomically the given value.
 func (b *Bool) Store(new bool) {
 	atomic.StoreUint32(&b.value, b2i(new))
 }
@@ -32,7 +32,7 @@ func (b *Bool) Toggle() bool {
 	return isTrue(atomic.AddUint32(&b.value, 1) - 1)
 }
 
-// CAS is an atomic compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (b *Bool) CAS(old, new bool) bool {
 	return atomic.CompareAndSwapUint32(&b.value, b2i(old), b2i(new))
 }

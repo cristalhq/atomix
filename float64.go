@@ -10,7 +10,7 @@ type Float64 struct {
 	v uint64
 }
 
-// NewFloat64 creates a float64.
+// NewFloat64 creates a Float64.
 func NewFloat64(f float64) *Float64 {
 	return &Float64{v: math.Float64bits(f)}
 }
@@ -41,7 +41,7 @@ func (f *Float64) Sub(s float64) float64 {
 	return f.Add(-s)
 }
 
-// CAS is an atomic Compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (f *Float64) CAS(old, new float64) bool {
 	return atomic.CompareAndSwapUint64(&f.v, math.Float64bits(old), math.Float64bits(new))
 }

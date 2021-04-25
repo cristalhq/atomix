@@ -10,7 +10,7 @@ type Float32 struct {
 	v uint32
 }
 
-// NewFloat32 creates a float32.
+// NewFloat32 creates a Float32.
 func NewFloat32(f float32) *Float32 {
 	return &Float32{v: math.Float32bits(f)}
 }
@@ -41,7 +41,7 @@ func (f *Float32) Sub(s float32) float32 {
 	return f.Add(-s)
 }
 
-// CAS is an atomic Compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (f *Float32) CAS(old, new float32) bool {
 	return atomic.CompareAndSwapUint32(&f.v, math.Float32bits(old), math.Float32bits(new))
 }

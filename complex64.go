@@ -10,7 +10,7 @@ type Complex64 struct {
 	ri uint64
 }
 
-// NewComplex64 creates a float32.
+// NewComplex64 creates a Complex64.
 func NewComplex64(c complex64) *Complex64 {
 	return &Complex64{ri: complex64ToUint64(c)}
 }
@@ -41,7 +41,7 @@ func (c *Complex64) Sub(s complex64) complex64 {
 	return c.Add(-s)
 }
 
-// CAS is an atomic Compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (c *Complex64) CAS(oc, nc complex64) bool {
 	return atomic.CompareAndSwapUint64(&c.ri, complex64ToUint64(oc), complex64ToUint64(nc))
 }

@@ -37,7 +37,7 @@ func (u *Uintptr) Sub(n uintptr) uintptr {
 	return u.Add(^(n - 1))
 }
 
-// CAS is an atomic Compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (u *Uintptr) CAS(old, new uintptr) bool {
 	return atomic.CompareAndSwapUintptr(&u.value, old, new)
 }

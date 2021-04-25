@@ -7,7 +7,7 @@ type Uint64 struct {
 	value uint64
 }
 
-// NewUint64 creates a Uint64.
+// NewUint64 creates an Uint64.
 func NewUint64(i uint64) *Uint64 {
 	return &Uint64{value: i}
 }
@@ -47,7 +47,7 @@ func (i *Uint64) Dec() uint64 {
 	return i.Sub(1)
 }
 
-// CAS is an atomic Compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (i *Uint64) CAS(old, new uint64) bool {
 	return atomic.CompareAndSwapUint64(&i.value, old, new)
 }

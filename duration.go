@@ -12,9 +12,7 @@ type Duration struct {
 
 // NewDuration creates a Duration.
 func NewDuration(d time.Duration) *Duration {
-	return &Duration{
-		value: int64(d),
-	}
+	return &Duration{value: int64(d)}
 }
 
 // Load atomically the value.
@@ -42,7 +40,7 @@ func (d *Duration) Sub(dur time.Duration) time.Duration {
 	return time.Duration(atomic.AddInt64(&d.value, -int64(dur)))
 }
 
-// CAS is an atomic Compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (d *Duration) CAS(old, new time.Duration) bool {
 	return atomic.CompareAndSwapInt64(&d.value, int64(old), int64(new))
 }

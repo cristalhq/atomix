@@ -47,7 +47,7 @@ func (i *Int64) Dec() int64 {
 	return i.Sub(1)
 }
 
-// CAS is an atomic Compare-and-swap.
+// CAS is an atomic Compare-And-Swap operation.
 func (i *Int64) CAS(old, new int64) bool {
 	return atomic.CompareAndSwapInt64(&i.value, old, new)
 }
