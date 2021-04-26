@@ -5,13 +5,10 @@ import (
 	"sync/atomic"
 )
 
-const CacheLine = 64
-
 // AlignedInt64 is an atomic wrapper around an int64 aligned to a cache line.
 type AlignedInt64 struct {
-	_     [CacheLine - 8]byte
 	value int64
-	_     [CacheLine]byte
+	_     [CacheLine - 8]byte // unsafe.Sizeof(int64) == 8
 }
 
 // NewAlignedInt64 creates an AlignedInt64.
