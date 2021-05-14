@@ -24,5 +24,5 @@ func (tm *Time) Load() time.Time {
 
 // Store atomically the given value.
 func (tm *Time) Store(t time.Time) {
-	tm.value.Store(tm)
+	tm.value.Store(t)
 }
