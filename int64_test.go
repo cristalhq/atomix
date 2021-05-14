@@ -7,6 +7,7 @@ import (
 func TestInt64(t *testing.T) {
 	a := NewInt64(10)
 
+	Equal(t, "10", a.String(), "Wrong String")
 	Equal(t, int64(10), a.Load(), "Load wrong value")
 
 	Equal(t, int64(15), a.Add(5), "Add wrong value")

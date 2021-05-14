@@ -7,6 +7,7 @@ import (
 func TestUintptr(t *testing.T) {
 	a := NewUintptr(10)
 
+	Equal(t, "10", a.String(), "Wrong String")
 	Equal(t, uintptr(10), a.Load(), "Load wrong value")
 
 	Equal(t, uintptr(15), a.Add(5), "Add wrong value")

@@ -5,6 +5,7 @@ import "testing"
 func TestFloat32(t *testing.T) {
 	a := NewFloat32(10.5)
 
+	Equal(t, "10.5", a.String(), "Wrong String")
 	Equal(t, float32(10.5), a.Load(), "Load wrong value")
 
 	Equal(t, float32(10.8), a.Add(0.3), "Add wrong value")

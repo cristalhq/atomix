@@ -8,6 +8,7 @@ import (
 func TestDuration(t *testing.T) {
 	a := NewDuration(10 * time.Second)
 
+	Equal(t, "10s", a.String(), "Wrong String")
 	Equal(t, 10*time.Second, a.Load(), "Load wrong value")
 
 	Equal(t, 15*time.Second, a.Add(5*time.Second), "Add wrong value")

@@ -7,6 +7,7 @@ import (
 func TestUint32(t *testing.T) {
 	a := NewUint32(10)
 
+	Equal(t, "10", a.String(), "Wrong String")
 	Equal(t, uint32(10), a.Load(), "Load wrong value")
 
 	Equal(t, uint32(15), a.Add(5), "Add wrong value")
