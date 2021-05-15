@@ -7,6 +7,11 @@ type Value struct {
 	value atomic.Value
 }
 
+// NewValue creates a Value.
+func NewValue() *Value {
+	return &Value{}
+}
+
 // Load atomically the value.
 func (v *Value) Load() interface{} {
 	return v.value.Load()
