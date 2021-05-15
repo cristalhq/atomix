@@ -7,6 +7,7 @@ import (
 
 // AlignedInt64 is an atomic wrapper around an int64 aligned to a cache line.
 type AlignedInt64 struct {
+	atomicType
 	value int64
 	_     [CacheLine - 8]byte // unsafe.Sizeof(int64) == 8
 }

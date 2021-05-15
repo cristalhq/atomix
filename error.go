@@ -6,6 +6,7 @@ import (
 
 // Error is an atomic wrapper around error.
 type Error struct {
+	atomicType
 	value atomic.Value
 }
 

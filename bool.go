@@ -7,6 +7,7 @@ import (
 
 // Bool is an atomic boolean.
 type Bool struct {
+	atomicType
 	value uint32
 }
 

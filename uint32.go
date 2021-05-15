@@ -7,6 +7,7 @@ import (
 
 // Uint32 is an atomic wrapper around an uint32.
 type Uint32 struct {
+	atomicType
 	value uint32
 }
 

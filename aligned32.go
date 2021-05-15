@@ -7,6 +7,7 @@ import (
 
 // AlignedInt32 is an atomic wrapper around an int32 aligned to a cache line.
 type AlignedInt32 struct {
+	atomicType
 	value int32
 	_     [CacheLine - 4]byte // unsafe.Sizeof(int32) == 4
 }

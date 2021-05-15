@@ -9,6 +9,7 @@ import (
 
 // UnsafePointer is an atomic unsafe.Pointer.
 type UnsafePointer struct {
+	atomicType
 	value unsafe.Pointer
 }
 

@@ -7,6 +7,7 @@ import (
 
 // Uintptr is an atomic uintptr.
 type Uintptr struct {
+	atomicType
 	value uintptr
 }
 

@@ -8,6 +8,7 @@ import (
 
 // Float64 is an atomic wrapper around float64.
 type Float64 struct {
+	atomicType
 	value uint64
 }
 

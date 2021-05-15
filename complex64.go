@@ -8,6 +8,7 @@ import (
 
 // Complex64 is an atomic wrapper around float32.
 type Complex64 struct {
+	atomicType
 	ri uint64
 }
 

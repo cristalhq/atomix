@@ -4,6 +4,7 @@ import "sync/atomic"
 
 // Value is a wrapper for atomically accessed consistently typed values.
 type Value struct {
+	atomicType
 	value atomic.Value
 }
 

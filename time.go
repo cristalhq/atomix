@@ -7,6 +7,7 @@ import (
 
 // Time is an atomic wrapper around an time.Time.
 type Time struct {
+	atomicType
 	value atomic.Value
 }
 
