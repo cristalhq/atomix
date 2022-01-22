@@ -1,3 +1,4 @@
+//go:build !purego || !appengine || !js
 // +build !purego !appengine !js
 
 package atomix
