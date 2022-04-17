@@ -18,3 +18,25 @@ func TestFloat64(t *testing.T) {
 	a.Store(42.0)
 	Equal(t, float64(42.0), a.Load(), "Store wrong value")
 }
+
+func TestFloat64Compare(t *testing.T) {
+	a := NewFloat64(42)
+
+	old, ok := a.SwapGreater(80)
+	Equal(t, old, float64(42.0), "Store wrong value")
+	Equal(t, true, ok, "Store wrong value")
+	Equal(t, a.Load(), float64(80), "Store wrong value")
+
+	old, ok = a.SwapGreater(40)
+	Equal(t, old, float64(80.0), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+
+	old, ok = a.SwapLess(-80)
+	Equal(t, old, float64(80), "Store wrong value")
+	Equal(t, ok, true, "Store wrong value")
+	Equal(t, a.Load(), float64(-80), "Store wrong value")
+
+	old, ok = a.SwapLess(-40)
+	Equal(t, old, float64(-80.0), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+}

@@ -51,3 +51,29 @@ func (f *Float32) Sub(s float32) float32 {
 func (f *Float32) CAS(old, new float32) bool {
 	return atomic.CompareAndSwapUint32(&f.value, math.Float32bits(old), math.Float32bits(new))
 }
+
+// SwapGreater value atomically, returns old and swap result.
+func (f *Float32) SwapGreater(new float32) (old float32, swapped bool) {
+	for {
+		old := f.Load()
+		if new <= old {
+			return old, false
+		}
+		if f.CAS(old, new) {
+			return old, true
+		}
+	}
+}
+
+// SwapLess value atomically, returns old and swap result.
+func (f *Float32) SwapLess(new float32) (old float32, swapped bool) {
+	for {
+		old := f.Load()
+		if new >= old {
+			return old, false
+		}
+		if f.CAS(old, new) {
+			return old, true
+		}
+	}
+}
