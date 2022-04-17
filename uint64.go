@@ -59,3 +59,29 @@ func (i *Uint64) Dec() uint64 {
 func (i *Uint64) CAS(old, new uint64) bool {
 	return atomic.CompareAndSwapUint64(&i.value, old, new)
 }
+
+// SwapGreater value atomically, returns old and swap result.
+func (i *Uint64) SwapGreater(new uint64) (old uint64, swapped bool) {
+	for {
+		old := i.Load()
+		if new <= old {
+			return old, false
+		}
+		if i.CAS(old, new) {
+			return old, true
+		}
+	}
+}
+
+// SwapLess value atomically, returns old and swap result.
+func (i *Uint64) SwapLess(new uint64) (old uint64, swapped bool) {
+	for {
+		old := i.Load()
+		if new >= old {
+			return old, false
+		}
+		if i.CAS(old, new) {
+			return old, true
+		}
+	}
+}

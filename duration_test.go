@@ -24,3 +24,25 @@ func TestDuration(t *testing.T) {
 	a.Store(15 * time.Second)
 	Equal(t, 15*time.Second, a.Load(), "Store wrong value")
 }
+
+func TestDurationCompare(t *testing.T) {
+	a := NewDuration(42)
+
+	old, ok := a.SwapGreater(80)
+	Equal(t, old, time.Duration(42.0), "Store wrong value")
+	Equal(t, true, ok, "Store wrong value")
+	Equal(t, a.Load(), time.Duration(80), "Store wrong value")
+
+	old, ok = a.SwapGreater(40)
+	Equal(t, old, time.Duration(80.0), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+
+	old, ok = a.SwapLess(-80)
+	Equal(t, old, time.Duration(80), "Store wrong value")
+	Equal(t, ok, true, "Store wrong value")
+	Equal(t, a.Load(), time.Duration(-80), "Store wrong value")
+
+	old, ok = a.SwapLess(-40)
+	Equal(t, old, time.Duration(-80.0), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+}

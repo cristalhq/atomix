@@ -49,3 +49,29 @@ func (d *Duration) Sub(dur time.Duration) time.Duration {
 func (d *Duration) CAS(old, new time.Duration) bool {
 	return atomic.CompareAndSwapInt64(&d.value, int64(old), int64(new))
 }
+
+// SwapGreater value atomically, returns old and swap result.
+func (d *Duration) SwapGreater(new time.Duration) (old time.Duration, swapped bool) {
+	for {
+		old := d.Load()
+		if new <= old {
+			return old, false
+		}
+		if d.CAS(old, new) {
+			return old, true
+		}
+	}
+}
+
+// SwapLess value atomically, returns old and swap result.
+func (d *Duration) SwapLess(new time.Duration) (old time.Duration, swapped bool) {
+	for {
+		old := d.Load()
+		if new >= old {
+			return old, false
+		}
+		if d.CAS(old, new) {
+			return old, true
+		}
+	}
+}

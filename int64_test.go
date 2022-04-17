@@ -26,3 +26,25 @@ func TestInt64(t *testing.T) {
 	a.Store(15)
 	Equal(t, int64(15), a.Load(), "Store wrong value")
 }
+
+func TestInt64Compare(t *testing.T) {
+	a := NewInt64(42)
+
+	old, ok := a.SwapGreater(80)
+	Equal(t, old, int64(42), "Store wrong value")
+	Equal(t, true, ok, "Store wrong value")
+	Equal(t, a.Load(), int64(80), "Store wrong value")
+
+	old, ok = a.SwapGreater(40)
+	Equal(t, old, int64(80), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+
+	old, ok = a.SwapLess(-80)
+	Equal(t, old, int64(80), "Store wrong value")
+	Equal(t, ok, true, "Store wrong value")
+	Equal(t, a.Load(), int64(-80), "Store wrong value")
+
+	old, ok = a.SwapLess(-40)
+	Equal(t, old, int64(-80), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+}

@@ -26,3 +26,25 @@ func TestUint64(t *testing.T) {
 	a.Store(15)
 	Equal(t, uint64(15), a.Load(), "Store wrong value")
 }
+
+func TestUint64Compare(t *testing.T) {
+	a := NewUint64(42)
+
+	old, ok := a.SwapGreater(80)
+	Equal(t, old, uint64(42), "Store wrong value")
+	Equal(t, true, ok, "Store wrong value")
+	Equal(t, a.Load(), uint64(80), "Store wrong value")
+
+	old, ok = a.SwapGreater(40)
+	Equal(t, old, uint64(80), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+
+	old, ok = a.SwapLess(8)
+	Equal(t, old, uint64(80), "Store wrong value")
+	Equal(t, ok, true, "Store wrong value")
+	Equal(t, a.Load(), uint64(8), "Store wrong value")
+
+	old, ok = a.SwapLess(40)
+	Equal(t, old, uint64(8), "Store wrong value")
+	Equal(t, ok, false, "Store wrong value")
+}

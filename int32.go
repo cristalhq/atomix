@@ -59,3 +59,29 @@ func (i *Int32) Dec() int32 {
 func (i *Int32) CAS(old, new int32) bool {
 	return atomic.CompareAndSwapInt32(&i.value, old, new)
 }
+
+// SwapGreater value atomically, returns old and swap result.
+func (i *Int32) SwapGreater(new int32) (old int32, swapped bool) {
+	for {
+		old := i.Load()
+		if new <= old {
+			return old, false
+		}
+		if i.CAS(old, new) {
+			return old, true
+		}
+	}
+}
+
+// SwapLess value atomically, returns old and swap result.
+func (i *Int32) SwapLess(new int32) (old int32, swapped bool) {
+	for {
+		old := i.Load()
+		if new >= old {
+			return old, false
+		}
+		if i.CAS(old, new) {
+			return old, true
+		}
+	}
+}
