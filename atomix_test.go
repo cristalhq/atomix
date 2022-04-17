@@ -5,28 +5,10 @@ import (
 	"testing"
 )
 
-func Equal(t *testing.T, expected, actual interface{}, msg string) {
-	t.Helper()
+func mustEqual(tb testing.TB, got, want interface{}) {
+	tb.Helper()
 
-	if !reflect.DeepEqual(expected, actual) {
-		t.Errorf(`%s:
-expected: %v
-actual  : %v`, msg, expected, actual)
-	}
-}
-
-func OK(t *testing.T, cond bool, msg string) {
-	t.Helper()
-
-	if !cond {
-		t.Errorf("%s: should be true", msg)
-	}
-}
-
-func NotOK(t *testing.T, cond bool, msg string) {
-	t.Helper()
-
-	if cond {
-		t.Errorf("%s: should be false", msg)
+	if !reflect.DeepEqual(got, want) {
+		tb.Fatalf("got: %v, want: %v", got, want)
 	}
 }

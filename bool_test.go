@@ -5,26 +5,23 @@ import (
 )
 
 func TestBool(t *testing.T) {
-	atom := NewBool(false)
+	a := NewBool(false)
 
-	Equal(t, "false", atom.String(), "Expected 'false'")
-	NotOK(t, atom.Toggle(), "Expected swap to return previous value.")
-	Equal(t, "true", atom.String(), "Expected 'true'")
-	OK(t, atom.Load(), "Unexpected state after swap.")
+	mustEqual(t, a.String(), "false")
+	mustEqual(t, a.Toggle(), false)
+	mustEqual(t, a.String(), "true")
+	mustEqual(t, a.Load(), true)
 
-	OK(t, atom.CAS(true, true), "CAS should swap when old matches")
-	OK(t, atom.Load(), "CAS should have no effect")
-	OK(t, atom.CAS(true, false), "CAS should swap when old matches")
-	NotOK(t, atom.Load(), "CAS should have modified the value")
-	NotOK(t, atom.CAS(true, false), "CAS should fail on old mismatch")
-	NotOK(t, atom.Load(), "CAS should not have modified the value")
+	mustEqual(t, a.CAS(true, true), true)
+	mustEqual(t, a.Load(), true)
+	mustEqual(t, a.CAS(true, false), true)
+	mustEqual(t, a.Load(), false)
+	mustEqual(t, a.CAS(true, false), false)
+	mustEqual(t, a.Load(), false)
 
-	atom.Store(false)
-	NotOK(t, atom.Load(), "Unexpected state after store.")
+	a.Store(false)
+	mustEqual(t, a.Load(), false)
 
-	prev := atom.Swap(false)
-	NotOK(t, prev, "Expected Swap to return previous value.")
-
-	prev = atom.Swap(true)
-	NotOK(t, prev, "Expected Swap to return previous value.")
+	mustEqual(t, a.Swap(false), false)
+	mustEqual(t, a.Swap(true), false)
 }

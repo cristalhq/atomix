@@ -8,41 +8,41 @@ import (
 func TestDuration(t *testing.T) {
 	a := NewDuration(10 * time.Second)
 
-	Equal(t, "10s", a.String(), "Wrong String")
-	Equal(t, 10*time.Second, a.Load(), "Load wrong value")
+	mustEqual(t, a.String(), "10s")
+	mustEqual(t, a.Load(), 10*time.Second)
 
-	Equal(t, 15*time.Second, a.Add(5*time.Second), "Add wrong value")
-	Equal(t, 12*time.Second, a.Sub(3*time.Second), "Sub wrong value")
+	mustEqual(t, a.Add(5*time.Second), 15*time.Second)
+	mustEqual(t, a.Sub(3*time.Second), 12*time.Second)
 
-	OK(t, a.CAS(12*time.Second, 0), "CAS should swap")
-	Equal(t, 0*time.Second, a.Load(), "CAS wrong value")
-	NotOK(t, a.CAS(13*time.Second, 0), "CAS should not swap")
+	mustEqual(t, a.CAS(12*time.Second, 0), true)
+	mustEqual(t, a.Load(), 0*time.Second)
+	mustEqual(t, a.CAS(13*time.Second, 0), false)
 
-	Equal(t, 0*time.Second, a.Swap(1*time.Second), "Swap wrong value")
-	Equal(t, 1*time.Second, a.Load(), "Swap wrong value")
+	mustEqual(t, a.Swap(1*time.Second), 0*time.Second)
+	mustEqual(t, a.Load(), 1*time.Second)
 
 	a.Store(15 * time.Second)
-	Equal(t, 15*time.Second, a.Load(), "Store wrong value")
+	mustEqual(t, a.Load(), 15*time.Second)
 }
 
 func TestDurationCompare(t *testing.T) {
 	a := NewDuration(42)
 
 	old, ok := a.SwapGreater(80)
-	Equal(t, old, time.Duration(42.0), "Store wrong value")
-	Equal(t, true, ok, "Store wrong value")
-	Equal(t, a.Load(), time.Duration(80), "Store wrong value")
+	mustEqual(t, old, time.Duration(42.0))
+	mustEqual(t, ok, true)
+	mustEqual(t, a.Load(), time.Duration(80))
 
 	old, ok = a.SwapGreater(40)
-	Equal(t, old, time.Duration(80.0), "Store wrong value")
-	Equal(t, ok, false, "Store wrong value")
+	mustEqual(t, old, time.Duration(80.0))
+	mustEqual(t, ok, false)
 
 	old, ok = a.SwapLess(-80)
-	Equal(t, old, time.Duration(80), "Store wrong value")
-	Equal(t, ok, true, "Store wrong value")
-	Equal(t, a.Load(), time.Duration(-80), "Store wrong value")
+	mustEqual(t, old, time.Duration(80))
+	mustEqual(t, ok, true)
+	mustEqual(t, a.Load(), time.Duration(-80))
 
 	old, ok = a.SwapLess(-40)
-	Equal(t, old, time.Duration(-80.0), "Store wrong value")
-	Equal(t, ok, false, "Store wrong value")
+	mustEqual(t, old, time.Duration(-80.0))
+	mustEqual(t, ok, false)
 }

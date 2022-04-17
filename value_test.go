@@ -4,12 +4,12 @@ import "testing"
 
 func TestValue(t *testing.T) {
 	a := NewValue()
-	Equal(t, nil, a.Load(), "Load wrong value")
+	mustEqual(t, a.Load(), nil)
 
 	a = NewValue()
 	a.Store("Hello")
-	Equal(t, "Hello", a.Load(), "Load wrong value")
+	mustEqual(t, a.Load(), "Hello")
 
 	a.Store("World")
-	Equal(t, "World", a.Load(), "Store wrong value")
+	mustEqual(t, a.Load(), "World")
 }
