@@ -2,8 +2,7 @@
 
 [![build-img]][build-url]
 [![pkg-img]][pkg-url]
-[![reportcard-img]][reportcard-url]
-[![coverage-img]][coverage-url]
+[![version-img]][version-url]
 
 Better `sync/atomic` package for Go.
 
@@ -18,14 +17,16 @@ For the better `sync` package see [synx](https://github.com/cristalhq/synx).
 ## Features
 
 * All primitive types and more
-  * int8, int16, int32, int64
-  * uint8, uint16, uint32, uint64
-  * float32, float64, complex64
-  * string, interface{} and error
-  * uintptr, unsafe pointer
-  * time.Time, time.Duration
+  * `int8`, `int16`, `int32`, `int64`
+  * `uint8`, `uint16`, uint32`, `uint64`
+  * `float32`, `float64`, `complex64` and `int`
+  * `string`, `interface{}` and `error`
+  * `uintptr`, `unsafe.Pointer`
+  * `time.Time`, `time.Duration`
 * Zero cpu and memory overhead in almost all cases.
 * Useful helpers.
+
+See [docs][pkg-url].
 
 ## Install
 
@@ -42,10 +43,6 @@ a.Add(2)
 b := a.Load() // 1337
 ```
 
-## Documentation
-
-See [these docs][pkg-url].
-
 ## License
 
 [MIT License](LICENSE).
@@ -54,7 +51,5 @@ See [these docs][pkg-url].
 [build-url]: https://github.com/cristalhq/atomix/actions
 [pkg-img]: https://pkg.go.dev/badge/cristalhq/atomix
 [pkg-url]: https://pkg.go.dev/github.com/cristalhq/atomix
-[reportcard-img]: https://goreportcard.com/badge/cristalhq/atomix
-[reportcard-url]: https://goreportcard.com/report/cristalhq/atomix
-[coverage-img]: https://codecov.io/gh/cristalhq/atomix/branch/master/graph/badge.svg
-[coverage-url]: https://codecov.io/gh/cristalhq/atomix
+[version-img]: https://img.shields.io/github/v/release/cristalhq/acmd
+[version-url]: https://github.com/cristalhq/acmd/releases
