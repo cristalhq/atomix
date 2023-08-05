@@ -21,7 +21,7 @@ For the better `sync` package see [synx](https://github.com/cristalhq/synx).
   * `uint8`, `uint16`, uint32`, `uint64`
   * `float32`, `float64`, `complex64` and `int`
   * `string`, `interface{}` and `error`
-  * `uintptr`, `unsafe.Pointer``
+  * `uintptr`, `unsafe.Pointer`
   * `time.Time`, `time.Duration`
 * Zero cpu and memory overhead in almost all cases.
 * Useful helpers.
