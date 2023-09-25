@@ -42,16 +42,19 @@ func (a *AlignedInt32) Add(n int32) int32 {
 }
 
 // Sub atomically and return the new value.
+// Deprecated: use Add(-n).
 func (a *AlignedInt32) Sub(n int32) int32 {
 	return atomic.AddInt32(&a.value, -n)
 }
 
 // Inc atomically and return the new value.
+// Deprecated: use Add(1).
 func (a *AlignedInt32) Inc() int32 {
 	return a.Add(1)
 }
 
 // Dec atomically and return the new value.
+// Deprecated: use Add(-1).
 func (a *AlignedInt32) Dec() int32 {
 	return a.Sub(1)
 }
