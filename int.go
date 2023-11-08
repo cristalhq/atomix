@@ -40,16 +40,19 @@ func (i *Int) Add(n int) int {
 }
 
 // Sub atomically and return the new value.
+// Deprecated: use Add(-n).
 func (i *Int) Sub(n int) int {
 	return AddInt(&i.value, -n)
 }
 
 // Inc atomically and return the new value.
+// Deprecated: use Add(1).
 func (i *Int) Inc() int {
 	return i.Add(1)
 }
 
 // Dec atomically and return the new value.
+// Deprecated: use Add(-1).
 func (i *Int) Dec() int {
 	return i.Sub(1)
 }

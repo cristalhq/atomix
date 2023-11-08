@@ -41,16 +41,19 @@ func (i *Int64) Add(n int64) int64 {
 }
 
 // Sub atomically and return the new value.
+// Deprecated: use Add(-n).
 func (i *Int64) Sub(n int64) int64 {
 	return atomic.AddInt64(&i.value, -n)
 }
 
 // Inc atomically and return the new value.
+// Deprecated: use Add(1).
 func (i *Int64) Inc() int64 {
 	return i.Add(1)
 }
 
 // Dec atomically and return the new value.
+// Deprecated: use Add(-1).
 func (i *Int64) Dec() int64 {
 	return i.Sub(1)
 }

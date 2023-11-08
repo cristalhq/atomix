@@ -41,16 +41,19 @@ func (u *Uint64) Add(n uint64) uint64 {
 }
 
 // Sub atomically and return the new value.
+// Deprecated: use Add(-n).
 func (u *Uint64) Sub(n uint64) uint64 {
 	return atomic.AddUint64(&u.value, ^(n - 1))
 }
 
 // Inc atomically and return the new value.
+// Deprecated: use Add(1).
 func (u *Uint64) Inc() uint64 {
 	return u.Add(1)
 }
 
 // Dec atomically and return the new value.
+// Deprecated: use Add(-1).
 func (u *Uint64) Dec() uint64 {
 	return u.Sub(1)
 }

@@ -41,16 +41,19 @@ func (u *Uint32) Add(n uint32) uint32 {
 }
 
 // Sub atomically and return the new value.
+// Deprecated: use Add(-n).
 func (u *Uint32) Sub(n uint32) uint32 {
 	return atomic.AddUint32(&u.value, ^(n - 1))
 }
 
 // Inc atomically and return the new value.
+// Deprecated: use Add(1).
 func (u *Uint32) Inc() uint32 {
 	return u.Add(1)
 }
 
 // Dec atomically and return the new value.
+// Deprecated: use Add(-1).
 func (u *Uint32) Dec() uint32 {
 	return u.Sub(1)
 }

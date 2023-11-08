@@ -41,16 +41,19 @@ func (i *Int32) Add(n int32) int32 {
 }
 
 // Sub atomically and return the new value.
+// Deprecated: use Add(-n).
 func (i *Int32) Sub(n int32) int32 {
 	return atomic.AddInt32(&i.value, -n)
 }
 
 // Inc atomically and return the new value.
+// Deprecated: use Add(1).
 func (i *Int32) Inc() int32 {
 	return i.Add(1)
 }
 
 // Dec atomically and return the new value.
+// Deprecated: use Add(-1).
 func (i *Int32) Dec() int32 {
 	return i.Sub(1)
 }

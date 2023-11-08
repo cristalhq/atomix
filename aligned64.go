@@ -42,16 +42,19 @@ func (a *AlignedInt64) Add(n int64) int64 {
 }
 
 // Sub atomically and return the new value.
+// Deprecated: use Add(-n).
 func (a *AlignedInt64) Sub(n int64) int64 {
 	return atomic.AddInt64(&a.value, -n)
 }
 
 // Inc atomically and return the new value.
+// Deprecated: use Add(1).
 func (a *AlignedInt64) Inc() int64 {
 	return a.Add(1)
 }
 
 // Dec atomically and return the new value.
+// Deprecated: use Add(-1).
 func (a *AlignedInt64) Dec() int64 {
 	return a.Sub(1)
 }
